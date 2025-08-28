@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acme — Modern Single Page Website</title>
+  <meta name="description" content="A clean, responsive single-page static website template." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#94a3b8;
+      --accent:#7c3aed;
+      --glass: rgba(255,255,255,0.04);
+      --radius:12px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color-scheme: dark;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071021 0%, #071827 100%);color:#e6eef8}
+    a{color:inherit;text-decoration:none}
+
+    /* ========== Layout ========== */
+    .container{max-width:1100px;margin:0 auto;padding:36px 20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .logo{width:44px;height:44px;display:inline-grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,var(--accent),#4c1d95);box-shadow:0 6px 20px rgba(124,58,237,0.18)}
+    nav{display:flex;gap:18px;align-items:center}
+    .nav-link{font-weight:600;color:var(--muted);padding:8px 10px;border-radius:8px}
+    .nav-link:hover{color:#fff;background:var(--glass)}
+
+    /* Mobile */
+    .menu-toggle{display:none;background:none;border:0;color:var(--muted);font-size:20px}
+    .mobile-nav{display:none}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:56px 0}
+    .eyebrow{display:inline-block;background:rgba(124,58,237,0.12);color:#e9d9ff;padding:6px 10px;border-radius:999px;font-weight:600;font-size:13px}
+    h1{font-size:40px;line-height:1.02;margin:14px 0 8px}
+    p.lead{color:var(--muted);font-size:16px;max-width:54ch}
+
+    .cta-row{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:12px 16px;border-radius:12px;font-weight:700;cursor:pointer;border:0}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),#5b21b6);box-shadow:0 8px 30px rgba(124,58,237,0.24);color:#fff}
+    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+
+    /* Card (right column) */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:18px;box-shadow:0 6px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .stat{display:flex;gap:12px;align-items:center}
+    .stat b{font-size:20px}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px}
+    .feature{background:var(--card);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .feature h3{margin:0 0 8px;font-size:16px}
+    .feature p{color:var(--muted);font-size:14px;margin:0}
+
+    /* About/Pricing/Contact */
+    section{padding:56px 0;border-top:1px dashed rgba(255,255,255,0.02)}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+
+    /* Pricing cards */
+    .pricing{display:flex;gap:16px}
+    .price-card{flex:1;padding:20px;border-radius:12px;background:linear-gradient(180deg,#071124, #081025);border:1px solid rgba(255,255,255,0.03)}
+    .price{font-size:28px;font-weight:800}
+
+    /* Contact form */
+    form{display:grid;gap:12px}
+    input,textarea{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:12px;border-radius:8px;color:#e6eef8}
+    textarea{min-height:120px;resize:vertical}
+
+    footer{padding:28px 0;color:var(--muted)}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .features{grid-template-columns:repeat(2,1fr)}
+      .grid-2{grid-template-columns:1fr}
+      nav{display:none}
+      .menu-toggle{display:inline-block}
+      .mobile-nav{display:block}
+      .mobile-nav.hidden{display:none}
+    }
+    @media (max-width:560px){
+      .features{grid-template-columns:1fr}
+      .card{padding:14px}
+      h1{font-size:30px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">A</div>
+        <div>
+          <div style="font-size:14px;letter-spacing:0.2px">Acme Studio</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">Design • Web • Product</div>
+        </div>
+      </div>
+
+      <nav aria-label="Main navigation">
+        <a class="nav-link" href="#features">Features</a>
+        <a class="nav-link" href="#pricing">Pricing</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false">☰</button>
+    </header>
+
+    <div class="mobile-nav hidden" id="mobileNav">
+      <div style="display:flex;flex-direction:column;gap:8px;margin-top:12px">
+        <a class="nav-link" href="#features">Features</a>
+        <a class="nav-link" href="#pricing">Pricing</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero" id="home">
+        <div>
+          <span class="eyebrow">New • 2025</span>
+          <h1>Beautiful, fast single-page websites — built for modern projects.</h1>
+          <p class="lead">A clean, responsive template you can drop into any project. Includes hero, features, pricing, and a contact form — minimal CSS and no build step required.</p>
+
+          <div class="cta-row">
+            <button class="btn btn-primary" onclick="scrollToSection('contact')">Get started</button>
+            <a class="btn btn-ghost" href="#features">See features</a>
+          </div>
+
+          <div style="display:flex;gap:14px;margin-top:18px">
+            <div class="stat">
+              <div style="width:46px;height:46px;border-radius:10px;background:rgba(255,255,255,0.02);display:grid;place-items:center">🚀</div>
+              <div>
+                <div><b>Fast</b></div>
+                <div class="small">Optimized for performance</div>
+              </div>
+            </div>
+
+            <div class="stat">
+              <div style="width:46px;height:46px;border-radius:10px;background:rgba(255,255,255,0.02);display:grid;place-items:center">🎨</div>
+              <div>
+                <div><b>Modern</b></div>
+                <div class="small">Clean UI & components</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <div>
+              <div class="small">Monthly visitors</div>
+              <div style="font-weight:800;font-size:22px">45,230</div>
+            </div>
+            <div style="text-align:right">
+              <div class="small">Conversion</div>
+              <div style="font-weight:800;font-size:22px">3.6%</div>
+            </div>
+          </div>
+
+          <div style="height:8px;background:linear-gradient(90deg,var(--accent),#4f46e5);border-radius:999px;margin-top:8px"></div>
+
+          <div style="margin-top:14px;color:var(--muted);font-size:13px">Includes lightweight JS for navigation and a contact form that posts to your endpoint. Replace the placeholder action in the form in the Contact section.</div>
+        </aside>
+      </section>
+
+      <section id="features">
+        <h2 style="margin:0 0 14px">Features</h2>
+        <div class="features">
+          <div class="feature">
+            <h3>Responsive layout</h3>
+            <p>Looks great on phones, tablets, and desktops — mobile-first design principles.</p>
+          </div>
+          <div class="feature">
+            <h3>Accessible</h3>
+            <p>Semantic HTML, keyboard-friendly controls, and clear visual contrast.</p>
+          </div>
+          <div class="feature">
+            <h3>No build step</h3>
+            <p>Drop the single HTML file onto any static host (GitHub Pages, Netlify, Vercel).</p>
+
+          </div>
+        </div>
+      </section>
+
+      <section id="pricing">
+        <h2 style="margin:0 0 14px">Pricing</h2>
+        <div class="pricing">
+          <div class="price-card">
+            <div class="small">Starter</div>
+            <div class="price">Free</div>
+            <p class="small" style="margin-top:8px">Includes a single page, basic support, and community updates.</p>
+          </div>
+
+          <div class="price-card">
+            <div class="small">Pro</div>
+            <div class="price">$12 / mo</div>
+            <p class="small" style="margin-top:8px">Custom domain, analytics, and priority support.</p>
+          </div>
+
+          <div class="price-card">
+            <div class="small">Enterprise</div>
+            <div class="price">Contact</div>
+            <p class="small" style="margin-top:8px">SLA, team seats, and on-prem options.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="about">
+        <div class="grid-2">
+          <div>
+            <h2 style="margin-top:0">About Acme Studio</h2>
+            <p class="small">We build elegant, performant frontends and product experiences for startups and agencies. This template is intentionally minimal so you can iterate quickly.</p>
+            <ul style="color:var(--muted);margin-top:12px">
+              <li>Design systems and UI libraries</li>
+              <li>Performance optimization</li>
+              <li>Product design sprints</li>
+            </ul>
+          </div>
+          <div>
+            <h3 style="margin-top:0">Why choose us?</h3>
+            <p class="small">We ship fast, prioritize clarity, and keep designs human-focused. If you want this template customized, tell us which sections to change.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2 style="margin:0 0 14px">Contact</h2>
+        <div class="grid-2">
+          <div>
+            <form id="contactForm" action="#" onsubmit="submitContact(event)">
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+              <input id="email" name="email" type="email" placeholder="Your email" required />
+              <textarea id="message" name="message" placeholder="Tell us about your project" required></textarea>
+              <div style="display:flex;gap:8px;align-items:center">
+                <button type="submit" class="btn btn-primary">Send message</button>
+                <button type="button" class="btn btn-ghost" onclick="resetForm()">Reset</button>
+              </div>
+            </form>
+            <div id="formMessage" style="margin-top:12px;color:var(--muted);font-size:14px"></div>
+          </div>
+
+          <aside style="padding-left:8px">
+            <div style="background:var(--card);padding:16px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)">
+              <div style="font-weight:700">Office</div>
+              <div class="small" style="margin-top:6px">Dhaka, Bangladesh</div>
+              <div class="small" style="margin-top:6px">hello@acme.example</div>
+              <div class="small" style="margin-top:6px">+880 1X XXX XXXX</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div class="small">© Acme Studio 2025 • Built with ♡</div>
+        <div style="display:flex;gap:10px">
+          <a class="small" href="#">Privacy</a>
+          <a class="small" href="#">Terms</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile nav
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', ()=>{
+      const hidden = mobileNav.classList.toggle('hidden');
+      menuToggle.setAttribute('aria-expanded', String(!hidden));
+    });
+
+    // Smooth scroll helper
+    function scrollToSection(id){
+      document.getElementById(id).scrollIntoView({behavior:'smooth', block:'start'});
+    }
+
+    // Contact form (demo-only): replace fetch target with your endpoint
+    async function submitContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const status = document.getElementById('formMessage');
+      status.textContent = 'Sending...';
+
+      try{
+        // Demo: we won't actually send. Replace with your API endpoint.
+        // Example:
+        // await fetch('https://your-endpoint.example/contact', {
+        //   method: 'POST', headers:{'Content-Type':'application/json'},
+        //   body: JSON.stringify({name,email,message})
+        // });
+
+        await new Promise(r => setTimeout(r, 800)); // simulated delay
+        status.style.color = '#7ee787';
+        status.textContent = 'Message sent! We will reply within 1 business day.';
+        document.getElementById('contactForm').reset();
+      }catch(err){
+        status.style.color = '#f28b82';
+        status.textContent = 'Sorry — something went wrong. Try again later.';
+      }
+    }
+    function resetForm(){
+      document.getElementById('contactForm').reset();
+      document.getElementById('formMessage').textContent = '';
+    }
+
+    // Tiny accessibility improvement: focus outline for keyboard users only
+    (function(){
+      function handleFirstTab(e){
+        if(e.key === 'Tab') document.body.classList.add('user-is-tabbing');
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+  </script>
+</body>
+</html>
