@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acme — Sign Up</title>
+  <meta name="description" content="Create an account with Acme Studio" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container auth-page">
+    <header style="margin-bottom:32px">
+      <a href="index.html" class="brand" style="text-decoration:none;color:inherit">
+        <div class="logo">A</div>
+        <div>
+          <div style="font-size:14px;letter-spacing:0.2px">Acme Studio</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">Back to Home</div>
+        </div>
+      </a>
+    </header>
+
+    <main>
+      <section class="auth-card">
+        <h1 style="margin:0 0 12px">Create your account</h1>
+        <p class="small" style="margin-bottom:20px;color:var(--muted)">Sign up to access all features</p>
+
+        <form id="signupForm" onsubmit="submitSignup(event)">
+          <input type="text" id="fullname" name="fullname" placeholder="Full name" required>
+          <input type="email" id="signupEmail" name="email" placeholder="Email address" required>
+          <input type="password" id="password" name="password" placeholder="Password" required>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm password" required>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;margin-top:12px">Sign Up</button>
+        </form>
+
+        <div id="signupMessage" style="margin-top:12px;font-size:14px;color:var(--muted)"></div>
+
+        <div style="margin-top:18px;text-align:center">
+          <span class="small">Already have an account?</span>
+          <a href="#" class="small" style="color:var(--accent)">Log in</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    async function submitSignup(e){
+      e.preventDefault();
+      const name = document.getElementById('fullname').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const pass = document.getElementById('password').value;
+      const confirm = document.getElementById('confirmPassword').value;
+      const status = document.getElementById('signupMessage');
+      status.textContent = '';
+
+      if(pass !== confirm){
+        status.style.color = '#f28b82';
+        status.textContent = 'Passwords do not match.';
+        return;
+      }
+
+      status.style.color = 'var(--muted)';
+      status.textContent = 'Creating your account...';
+
+      try{
+        // Replace with your real backend endpoint
+        await new Promise(r => setTimeout(r, 1000)); // simulated delay
+        status.style.color = '#7ee787';
+        status.textContent = 'Account created successfully! 🎉';
+        document.getElementById('signupForm').reset();
+      }catch(err){
+        status.style.color = '#f28b82';
+        status.textContent = 'Something went wrong. Please try again.';
+      }
+    }
+  </script>
+</body>
+</html>
