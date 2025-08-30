@@ -1,0 +1,30 @@
+
+
+.hero {
+  background: url('https://picsum.photos/1600/600?blur=3') no-repeat center center/cover;
+  height: 90vh;
+
+}
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(219, 64, 64, 0.2);
+}
+.display-4{
+  color:black;
+    font-weight: bold;
+}
+.lead{
+  color:black;
+    font-weight: bold;
+}
